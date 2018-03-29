@@ -1,0 +1,20 @@
+#cloud-config
+package_upgrade: true
+users:
+  - name: pcocp
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - [SSH-KEY]
+
+runcmd:
+ - [ git, clone, "https://github.com/pco-bcp/site-pco-cities.git", "/home/pcocp/challenge-platform" ]
+ - cd "/home/pcocp/challenge-platform"
+ - [ export, "COMPOSER_HOME=/root" ]
+ - [ "/usr/local/bin/composer", "install" ]
+ - [ chown, "-R", "pcocp:www-data", "/home/pcocp/challenge-platform" ]
+ - mkdir /home/pcocp/pco-cp-storage
+ - bash -c 'echo "[FILES-STORE] /home/pcocp/pco-cp-storage cifs vers=2.1,uid=33,gid=33,username=[USERNAME],password=[PASSWORD],dir_mode=0777,file_mode=0777,serverino" >> /etc/fstab'
+ - mount -a
+ - [ ln, "-sf", "/home/pcocp/pco-cp-storage/drupal-sites", "/home/pcocp/challenge-platform/html/sites"]
