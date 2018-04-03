@@ -3,7 +3,7 @@
 This repository contains architecture documentation and build scripts for the various Virtual Machines that make up the
 PCO Challenge Platform Infrastructure
 
-- [Infrastructure Diagram](PCO%20Challenge%20Platform%20Infrastructure.pdf)
+- [Infrastructure Diagram](PCO%20Challenge%20Platform%20Architecture.png)
 - [Detailed VM Descriptions](challenge-platform-server-architecture.md)
 
 ## PCO-CP-Jumpbox
